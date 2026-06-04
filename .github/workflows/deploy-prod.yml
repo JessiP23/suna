@@ -49,7 +49,7 @@ jobs:
       title: ${{ steps.v.outputs.title }}
       notes: ${{ steps.v.outputs.notes }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0  # need full tags + annotations to read the release notes
       - name: Read VERSION + release notes from the tag annotation
@@ -118,7 +118,7 @@ jobs:
     needs: version
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -205,7 +205,7 @@ jobs:
             artifact: desktop-linux-x64
             files: apps/desktop/src-tauri/target/release/bundle/appimage/*.AppImage
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Install Linux Tauri dependencies
         if: runner.os == 'Linux'
@@ -351,7 +351,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 

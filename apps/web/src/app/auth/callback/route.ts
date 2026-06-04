@@ -43,10 +43,10 @@ export async function GET(request: NextRequest) {
     })
   }
 
-  // Use request origin for redirects (most reliable for local dev)
-  // This ensures localhost:3000 redirects stay on localhost, not staging
+  // Use configured APP_URL first for production deployments (Azure, etc.)
+  // Fall back to request origin for local dev
   const requestOrigin = request.nextUrl.origin
-  const baseUrl = requestOrigin || runtimeEnv.APP_URL || 'http://localhost:3000'
+  const baseUrl = runtimeEnv.APP_URL || requestOrigin || 'http://localhost:3000'
   const error = searchParams.get('error')
   const errorCode = searchParams.get('error_code')
   const errorDescription = searchParams.get('error_description')

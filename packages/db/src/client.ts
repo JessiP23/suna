@@ -15,9 +15,12 @@ export function createDb(databaseUrl: string, options?: postgres.Options<{}>) {
   }
 
   // Connection with prepare: false for Supabase connection pooler compatibility
-  const client = postgres(databaseUrl, { 
+  const client = postgres(databaseUrl, {
     prepare: false,
-    ...options 
+    connection: {
+      application_name: 'kortix-api'
+    },
+    ...options
   });
 
   return drizzle(client, { schema });

@@ -40,7 +40,7 @@ jobs:
       cli: ${{ steps.filter.outputs.cli }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Path filter
         uses: dorny/paths-filter@v4
         id: filter
@@ -86,7 +86,7 @@ jobs:
     if: needs.detect-changes.outputs.api == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with: { submodules: false }
       - run: git submodule sync --recursive && git submodule update --init --recursive --remote
       - name: Set up QEMU
@@ -186,7 +186,7 @@ jobs:
     if: needs.detect-changes.outputs.frontend == 'true'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with: { submodules: false }
       - run: git submodule sync --recursive && git submodule update --init --recursive --remote
       - uses: actions/setup-node@v4
@@ -240,7 +240,7 @@ jobs:
     if: needs.detect-changes.outputs.cli == 'true'
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - uses: oven-sh/setup-bun@v2
         with:
@@ -307,7 +307,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
         with:
           fetch-depth: 0
 
